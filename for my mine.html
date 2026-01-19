@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permintaan Maaf Super Animatif</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ff9a9e, #fecfef);
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: background 2s ease;
+            cursor: pointer;
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(100px) scale(0.5) rotate(-10deg);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+        .slide.active {
+            opacity: 1;
+            transform: translateY(0) scale(1) rotate(0deg);
+        }
+        .slide.leaving {
+            opacity: 0;
+            transform: translateY(-100px) scale(1.2) rotate(10deg);
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: bounceIn 2s ease-out, glow 2s infinite alternate;
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            animation: fadeInUp 2s ease-out 0.5s both;
+        }
+        .typewriter {
+            font-size: 1.5em;
+            border-right: 2px solid #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        .particle {
+            position: absolute;
+            font-size: 2em;
+            animation: fall 10s linear infinite, twinkle 1s infinite alternate;
+            pointer-events: none;
+        }
+        .heart-click {
+            position: absolute;
+            font-size: 3em;
+            animation: heartbeat 0.6s ease-in-out, fall 4s linear;
+            pointer-events: none;
+        }
+        .ripple {
+            position: absolute;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: ripple 1s linear;
+            pointer-events: none;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #fff; }
+        }
+        @keyframes fall {
+            from { top: -10%; transform: rotate(0deg) scale(1); opacity: 1; }
+            to { top: 110%; transform: rotate(360deg) scale(0.3); opacity: 0; }
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        @keyframes ripple {
+            to { transform: scale(4); opacity: 0; }
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff; }
+            to { text-shadow: 0 0 20px #ff6b6b, 0 0 30px #ff6b6b; }
+        }
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            animation: fadeIn 3s ease-out 1s both;
+            transition: background 0.3s, transform 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        button:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .indicators {
+            position: absolute;
+            bottom: 60px;
+            display: flex;
+            gap: 10px;
+        }
+        .indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .indicator.active {
+            background: #fff;
+            transform: scale(1.2);
+        }
+        .indicator:hover {
+            transform: scale(1.1);
+        }
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body onclick="createRipple(event); createHeartAtClick(event)">
+    <!-- Slide 1 -->
+    <div class="slide active" id="slide1">
+        <h1>Maafkan Aku, Sayang 💔</h1>
+        <p>Aku aku bikin kamu marah. Aku menyinggung perasaan kamu 😞.</p>
+        
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide" id="slide2">
+        <h1>maafin aku yah sayang 😢 kerane udah menyinggung perasaan kamu. aku sayang banget sama kamu.</p>
+        
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" id="slide3">
+        <h1>aku sayang banget sama kamu 💕</h1>
+        <p>aku udah kangen banget sama kamu 🥺.</p>
+        <p>jadi maafin aku yah sayang 🥺.</p>
+        
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide" id="slide4">
+        <h1>Aku Sayang banget sama kamu ❤️</h1>
+        <p class="typewriter">tolong maafin aku yah sayangku 🥺? Klik tombol di bawah untuk jawaban spesial!</p>
+        <button onclick="showFinalMessage()">Ya, Aku Memaafkan!</button>
+        <button onclick="playMusic()">Putar Musik Romantis</button>
+    </div>
+
+    <!-- Kontrol Slide -->
+    <div class="controls">
+        <button onclick="prevSlide()">Sebelumnya</button>
+        <button onclick="nextSlide()">Selanjutkan</button>
+    </div>
+
+    <!-- Indikator Slide -->
+    <div class="indicators">
+        <div class="indicator active" onclick="showSlide(1)"></div>
+        <div class="indicator" onclick="showSlide(2)"></div>
+        <div class="indicator" onclick="showSlide(3)"></div>
+        <div class="indicator" onclick="showSlide(4)"></div>
+    </div>
+
+    <!-- Animasi Partikel -->
+    <div id="particles"></div>
+
+    <!-- Musik (Opsional) -->
+    <audio id="romanticMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 4;
+
+        function showSlide(slideNum) {
+            // Tambahkan efek leaving pada slide saat ini
+            document.getElementById('slide' + currentSlide).classList.add('leaving');
+            setTimeout(() => {
+                document.querySelectorAll('.slide').forEach(slide => {
+                    slide.classList.remove('active', 'leaving');
+                });
+                document.querySelectorAll('.indicator').forEach(ind => ind.classList.remove('active'));
+                document.getElementById('slide' + slideNum).classList.add('active');
+                document.querySelectorAll('.indicator')[slideNum - 1].classList.add('active');
+                currentSlide = slideNum;
+                // Ubah latar belakang berdasarkan slide
+                changeBackground(slideNum);
+            }, 750); // Tunggu transisi leaving selesai
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(1); // Loop kembali ke slide 1
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            } else {
+                showSlide(totalSlides); // Loop ke slide terakhir
+            }
+        }
+
+        function changeBackground(slideNum) {
+            const colors = [
+                'linear-gradient(to bottom, #ff9a9e, #fecfef)', // Slide 1
+                'linear-gradient(to bottom, #a8edea, #fed6e3)', // Slide 2
+                'linear-gradient(to bottom, #d299c2, #fef9d7)', // Slide 3
+                'linear-gradient(to bottom, #f093fb, #f5576c)'  // Slide 4
+            ];
+            document.body.style.background = colors[slideNum - 1];
+        }
+
+        // Fungsi untuk membuat partikel berjatuhan (bunga, hati, bintang, kupu-kupu)
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const emojis = ['🌸', '❤️', '⭐', '🦋', '💫'];
+            particle.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = Math.random() * 6 + 5 + 's';
+            particle.style.fontSize = Math.random() * 2 + 1.5 + 'em';
+            document.getElementById('particles').appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 10000);
+        }
+
+        // Buat partikel setiap 300ms
+        setInterval(createParticle, 300);
+
+        // Fungsi untuk membuat hati saat klik
+        function createHeartAtClick(event) {
+            const heart = document.createElement('div');
+            heart.className = 'heart-click';
+            heart.innerHTML = '💖';
+            heart.style.left = (event.clientX - 20) + 'px';
+            heart.style.top = (event.clientY - 20) + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        // Fungsi untuk efek ripple saat klik
+        function createRipple(event) {
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.left = (event.clientX - 10) + 'px';
+            ripple.style.top = (event.clientY - 10) + 'px';
+            document.body.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 1000);
+        }
+
+        // Fungsi untuk pesan akhir
+        function showFinalMessage() {
+            alert('Terima kasih, sayang! Aku sangat bahagia. Aku sayang kamu selamanya! 💖');
+        }
+
+        // Fungsi untuk musik
+        function playMusic() {
+            const music = document.getElementById('romanticMusic');
+            music.play();
+        }
+    </script>
+</body>
+</html>
